@@ -21,6 +21,21 @@ services:
       retries: 10
     restart: always
 
+  pgadmin:
+    image: docker.io/dpage/pgadmin4:9.3
+    container_name: srinil-stay-pgadmin
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@srinil-stay.local
+      PGADMIN_DEFAULT_PASSWORD: postgres
+    ports:
+      - "8090:80"
+    depends_on:
+      postgres:
+        condition: service_healthy
+    networks:
+      - srinil-stay-network
+    restart: unless-stopped
+
 volumes:
   pgdata:
     name: srinil-stay-pgdata
