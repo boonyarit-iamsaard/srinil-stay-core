@@ -39,6 +39,7 @@ jobs:
     name: Maven test
     runs-on: ubuntu-latest
     timeout-minutes: 20
+    needs: format
     env:
       SPRING_PROFILES_ACTIVE: ci
 

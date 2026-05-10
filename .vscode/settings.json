@@ -3,6 +3,7 @@
   "java.configuration.updateBuildConfiguration": "automatic",
   "[java]": {
     "editor.defaultFormatter": "dokimos-dev.palantir-java-formatter",
-    "editor.formatOnSave": true
+    "editor.formatOnSave": true,
+    "editor.rulers": [120]
   }
 }

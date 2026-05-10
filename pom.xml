@@ -197,14 +197,6 @@
                         <core.hooksPath>.githooks/</core.hooksPath>
                     </gitConfig>
                 </configuration>
-                <executions>
-                    <execution>
-                        <?m2e execute onConfiguration?>
-                        <goals>
-                            <goal>configure</goal>
-                        </goals>
-                    </execution>
-                </executions>
             </plugin>
             <plugin>
                 <groupId>com.diffplug.spotless</groupId>
@@ -217,7 +209,12 @@
                             <version>2.90.0</version>
                         </palantirJavaFormat>
 
+                        <importOrder>
+                            <order>\#,java|javax|jakarta,org|com|io|net|lombok,me.boonyarit.srinil,</order>
+                            <wildcardsLast>true</wildcardsLast>
+                        </importOrder>
                         <removeUnusedImports />
+                        <forbidWildcardImports />
                         <trimTrailingWhitespace />
                         <endWithNewline />
                     </java>
