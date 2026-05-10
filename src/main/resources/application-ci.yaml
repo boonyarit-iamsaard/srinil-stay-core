@@ -1,0 +1,16 @@
+spring:
+  config:
+    activate:
+      on-profile: ci
+
+  docker:
+    compose:
+      enabled: false
+
+  jpa:
+    show-sql: false
+
+logging:
+  level:
+    root: INFO
+    "[me.boonyarit.srinil]": INFO

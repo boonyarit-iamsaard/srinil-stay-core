@@ -1,0 +1,13 @@
+{
+  "configurations": [
+    {
+      "type": "java",
+      "name": "Spring Boot-Application<srinil-stay-core>",
+      "request": "launch",
+      "cwd": "${workspaceFolder}",
+      "mainClass": "me.boonyarit.srinil.core.Application",
+      "projectName": "srinil-stay-core",
+      "args": ["--spring.profiles.active=local"]
+    }
+  ]
+}

@@ -1,0 +1,54 @@
+spring:
+  config:
+    activate:
+      on-profile: local
+
+  datasource:
+    url: ${SPRING_DATASOURCE_URL:jdbc:postgresql://localhost:5432/srinil-stay}
+    username: ${SPRING_DATASOURCE_USERNAME:postgres}
+    password: ${SPRING_DATASOURCE_PASSWORD:postgres}
+
+  docker:
+    compose:
+      enabled: ${SPRING_DOCKER_COMPOSE_ENABLED:true}
+      file: compose.yaml
+      lifecycle-management: start-only
+
+  jpa:
+    properties:
+      hibernate:
+        "[format_sql]": true
+
+  web:
+    error:
+      include-message: always
+      include-binding-errors: always
+      include-stacktrace: on-param
+
+  flyway:
+    clean-disabled: false
+
+management:
+  endpoints:
+    access:
+      max-permitted: unrestricted
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: always
+
+springdoc:
+  api-docs:
+    enabled: true
+  swagger-ui:
+    enabled: true
+
+logging:
+  level:
+    "[me.boonyarit.srinil]": DEBUG
+    "[org.hibernate.SQL]": DEBUG
+    "[org.hibernate.orm.jdbc.bind]": TRACE
+    "[org.springframework.web]": INFO
+    "[org.springframework.security]": INFO

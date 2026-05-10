@@ -1,0 +1,38 @@
+spring:
+  config:
+    activate:
+      on-profile: production
+
+  datasource:
+    url: ${SPRING_DATASOURCE_URL}
+    username: ${SPRING_DATASOURCE_USERNAME}
+    password: ${SPRING_DATASOURCE_PASSWORD}
+    hikari:
+      pool-name: srinil-stay-core-pool
+      maximum-pool-size: ${SPRING_DATASOURCE_HIKARI_MAXIMUM_POOL_SIZE:10}
+      minimum-idle: ${SPRING_DATASOURCE_HIKARI_MINIMUM_IDLE:2}
+      connection-timeout: ${SPRING_DATASOURCE_HIKARI_CONNECTION_TIMEOUT:30000}
+      idle-timeout: ${SPRING_DATASOURCE_HIKARI_IDLE_TIMEOUT:600000}
+      max-lifetime: ${SPRING_DATASOURCE_HIKARI_MAX_LIFETIME:1800000}
+
+  docker:
+    compose:
+      enabled: false
+
+  jpa:
+    show-sql: false
+
+springdoc:
+  api-docs:
+    enabled: ${SPRINGDOC_API_DOCS_ENABLED:false}
+  swagger-ui:
+    enabled: ${SPRINGDOC_SWAGGER_UI_ENABLED:false}
+
+logging:
+  level:
+    root: ${LOGGING_LEVEL_ROOT:INFO}
+    "[me.boonyarit.srinil]": ${LOGGING_LEVEL_APP:INFO}
+    "[org.hibernate.SQL]": WARN
+    "[org.hibernate.orm.jdbc.bind]": WARN
+    "[org.hibernate.engine.jdbc.connections]": WARN
+    "[org.springframework.security]": WARN
