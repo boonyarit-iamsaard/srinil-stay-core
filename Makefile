@@ -2,7 +2,7 @@ IMAGE_NAME := srinil-stay-core
 
 .DEFAULT_GOAL := help
 
-.PHONY: run up up-build up-infra down down-infra down-clean test build clean docker-build help
+.PHONY: run up up-build up-infra down down-infra down-clean test build clean docker-build format format-check help
 
 run: ## Run the app locally with Spring Boot
 	SPRING_PROFILES_ACTIVE=local ./mvnw spring-boot:run
@@ -24,6 +24,12 @@ down-infra: ## Stop infrastructure only
 
 down-clean: ## Stop the full stack and remove volumes
 	docker compose down -v
+
+format: ## Apply Spotless code formatting
+	./mvnw spotless:apply
+
+format-check: ## Check code formatting with Spotless
+	./mvnw spotless:check
 
 test: ## Run tests
 	./mvnw test

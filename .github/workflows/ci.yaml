@@ -16,6 +16,25 @@ permissions:
   contents: read
 
 jobs:
+  format:
+    name: Maven format check
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "21"
+          cache: maven
+
+      - name: Check formatting
+        run: ./mvnw -B spotless:check
+
   test:
     name: Maven test
     runs-on: ubuntu-latest
