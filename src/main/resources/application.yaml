@@ -1,7 +1,8 @@
 spring:
   application:
     name: srinil-stay-core
-
+  config:
+    import: optional:file:.env[.properties]
   lifecycle:
     timeout-per-shutdown-phase: 30s
 
@@ -81,3 +82,21 @@ logging:
   level:
     root: INFO
     "[me.boonyarit.srinil]": INFO
+
+app:
+  auth:
+    jwt:
+      secret: ${APP_AUTH_JWT_SECRET}
+      access-token-ttl: ${APP_AUTH_JWT_ACCESS_TOKEN_TTL:PT15M}
+    refresh-token:
+      hash-secret: ${APP_AUTH_REFRESH_TOKEN_HASH_SECRET}
+      ttl: ${APP_AUTH_REFRESH_TOKEN_TTL:P30D}
+      cookie-name: ${APP_AUTH_REFRESH_COOKIE_NAME:srinil_refresh_token}
+      cookie-path: ${APP_AUTH_REFRESH_COOKIE_PATH:/api/v1/auth}
+      cookie-secure: ${APP_AUTH_REFRESH_COOKIE_SECURE:true}
+      cookie-same-site: ${APP_AUTH_REFRESH_COOKIE_SAME_SITE:Lax}
+      random-bytes: ${APP_AUTH_REFRESH_TOKEN_RANDOM_BYTES:32}
+    password:
+      bcrypt-strength: ${APP_AUTH_BCRYPT_STRENGTH:12}
+    cors:
+      allowed-origins: ${APP_AUTH_CORS_ALLOWED_ORIGINS:}

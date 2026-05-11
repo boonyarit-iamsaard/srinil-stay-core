@@ -45,6 +45,11 @@ springdoc:
   swagger-ui:
     enabled: true
 
+app:
+  auth:
+    refresh-token:
+      cookie-secure: ${APP_AUTH_REFRESH_COOKIE_SECURE:false}
+
 logging:
   level:
     "[me.boonyarit.srinil]": DEBUG

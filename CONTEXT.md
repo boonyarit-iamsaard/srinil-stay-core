@@ -62,6 +62,8 @@ Current authentication implementation:
 - `UserEntity` and `RefreshTokenEntity` exist.
 - `UserRepository` and `RefreshTokenRepository` exist.
 - `spring-boot-starter-oauth2-resource-server` is available for the later JWT resource-server slice.
+- Auth configuration properties exist for JWT, refresh tokens, cookies, password hashing, and CORS.
+- Email normalization, password encoding, JWT issuing, refresh-token generation, and refresh-token hashing helpers exist.
 - Runtime security still uses Spring Security HTTP Basic with Spring Boot's generated development user.
 - `./mvnw test` passes.
 - `./mvnw spotless:check` passes.
@@ -76,18 +78,23 @@ Resolved design direction:
 - Use refresh cookie name `srinil_refresh_token`.
 - Defer email verification enforcement, roles, staff/guest/property ownership, password reset, and password change.
 
-Completed implementation slice:
+Completed implementation slices:
 
 1. Add `spring-boot-starter-oauth2-resource-server`.
 2. Add `UserRepository`.
 3. Add `RefreshTokenRepository`.
 4. Add focused repository/entity tests.
 5. Keep current `SecurityConfig` until login, refresh, token, and controller services are ready to replace HTTP Basic fully.
+6. Add auth configuration properties and production secret validation.
+7. Add email normalization and password encoder infrastructure.
+8. Add JWT issuance support.
+9. Add refresh-token hashing/generation support.
+10. Add focused service/config tests.
 
 Recommended next implementation slice:
 
-1. Add auth configuration properties for JWT, refresh tokens, cookies, password hashing, and CORS.
-2. Add email normalization and password encoder infrastructure.
-3. Add JWT issuance support.
-4. Add refresh-token hashing/generation support.
-5. Add service-level tests before replacing `SecurityConfig`.
+1. Add request/response DTOs and `ApiResponse`.
+2. Add auth exception types and Problem Details handling.
+3. Add `RefreshTokenService` for create, rotate, revoke, and reuse detection.
+4. Add `AuthService` for register, login, refresh, and logout orchestration.
+5. Keep `SecurityConfig` replacement for the endpoint/controller slice.

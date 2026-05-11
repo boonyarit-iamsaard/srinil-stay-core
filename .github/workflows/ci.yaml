@@ -54,6 +54,9 @@ jobs:
           java-version: "21"
           cache: maven
 
+      - name: Copy environment variables
+        run: cp .env.example .env
+
       - name: Run tests
         run: ./mvnw -B test
 
@@ -73,6 +76,9 @@ jobs:
           distribution: temurin
           java-version: "21"
           cache: maven
+
+      - name: Copy environment variables
+        run: cp .env.example .env
 
       - name: Package application
         run: ./mvnw -B package -DskipTests
