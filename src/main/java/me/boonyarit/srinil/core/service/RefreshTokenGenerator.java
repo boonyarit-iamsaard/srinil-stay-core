@@ -4,19 +4,16 @@ import java.security.SecureRandom;
 import java.util.Base64;
 
 import org.springframework.stereotype.Component;
+import lombok.RequiredArgsConstructor;
 
 import me.boonyarit.srinil.core.config.AuthProperties;
 
 @Component
+@RequiredArgsConstructor
 public class RefreshTokenGenerator {
 
     private final AuthProperties properties;
-    private final SecureRandom secureRandom;
-
-    public RefreshTokenGenerator(AuthProperties properties) {
-        this.properties = properties;
-        this.secureRandom = new SecureRandom();
-    }
+    private final SecureRandom secureRandom = new SecureRandom();
 
     public String generate() {
         byte[] bytes = new byte[properties.getRefreshToken().getRandomBytes()];

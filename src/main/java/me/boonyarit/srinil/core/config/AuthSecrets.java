@@ -6,18 +6,16 @@ import javax.crypto.spec.SecretKeySpec;
 
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
+import lombok.RequiredArgsConstructor;
 
 @Component
+@RequiredArgsConstructor
 public class AuthSecrets {
 
     private static final String HMAC_SHA_256 = "HmacSHA256";
     private static final int MIN_SECRET_BYTES = 32;
 
     private final AuthProperties properties;
-
-    public AuthSecrets(AuthProperties properties) {
-        this.properties = properties;
-    }
 
     public SecretKey jwtSigningKey() {
         return new SecretKeySpec(secretBytes(properties.getJwt().getSecret(), "JWT secret"), HMAC_SHA_256);

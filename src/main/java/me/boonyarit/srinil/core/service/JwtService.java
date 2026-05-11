@@ -10,21 +10,17 @@ import org.springframework.security.oauth2.jwt.JwtClaimsSet;
 import org.springframework.security.oauth2.jwt.JwtEncoder;
 import org.springframework.security.oauth2.jwt.JwtEncoderParameters;
 import org.springframework.stereotype.Service;
+import lombok.RequiredArgsConstructor;
 
 import me.boonyarit.srinil.core.config.AuthProperties;
 
 @Service
+@RequiredArgsConstructor
 public class JwtService {
 
     private final AuthProperties properties;
     private final Clock clock;
     private final JwtEncoder jwtEncoder;
-
-    public JwtService(AuthProperties properties, Clock clock, JwtEncoder jwtEncoder) {
-        this.properties = properties;
-        this.clock = clock;
-        this.jwtEncoder = jwtEncoder;
-    }
 
     public AccessToken issueAccessToken(UUID userId, EmailIdentity emailIdentity) {
         Instant issuedAt = Instant.now(clock);

@@ -5,20 +5,18 @@ import javax.crypto.Mac;
 import javax.crypto.spec.SecretKeySpec;
 
 import org.springframework.stereotype.Component;
+import lombok.RequiredArgsConstructor;
 
 import me.boonyarit.srinil.core.config.AuthSecrets;
 
 @Component
+@RequiredArgsConstructor
 public class RefreshTokenHasher {
 
     private static final String ALGORITHM = "HmacSHA256";
     private static final char[] HEX = "0123456789abcdef".toCharArray();
 
     private final AuthSecrets authSecrets;
-
-    public RefreshTokenHasher(AuthSecrets authSecrets) {
-        this.authSecrets = authSecrets;
-    }
 
     public String hash(String refreshToken) {
         try {
