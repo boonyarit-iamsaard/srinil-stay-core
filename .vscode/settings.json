@@ -2,6 +2,7 @@
   "java.compile.nullAnalysis.mode": "automatic",
   "java.configuration.updateBuildConfiguration": "automatic",
   "[java]": {
+    "editor.inlayHints.enabled": "off",
     "editor.defaultFormatter": "dokimos-dev.palantir-java-formatter",
     "editor.formatOnSave": true,
     "editor.rulers": [120]
